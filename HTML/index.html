@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoLearn - Học ngôn ngữ miễn phí</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Thêm CSS để chuyển tất cả chữ sang màu đen */
+        body, header, main, footer, h1, h2, p, span, button, div {
+            color: black !important;
+        }
+        
+        /* Đảm bảo các thẻ <a> và các phần tử khác cũng màu đen */
+        a, a:visited, a:hover {
+            color: black !important;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">DuoLearn</div>
+        <nav>
+            <button id="profile-btn">Hồ sơ</button>
+            <button id="shop-btn">Cửa hàng</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="welcome-section">
+            <h1>Chào mừng bạn đến với DuoLearn!</h1>
+            <p>Hãy bắt đầu học ngôn ngữ ngay hôm nay.</p>
+            <button id="start-learning">Bắt đầu học</button>
+        </div>
+        <!-- Phần hồ sơ (modal) -->
+        <div id="profile-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" id="close-profile">&times;</span>
+                <h2>Hồ sơ của bạn</h2>
+                <div id="profile-info">
+                    <p><strong>Tên:</strong> <span id="profile-name">Người dùng mới</span></p>
+                    <p><strong>Cấp độ:</strong> <span id="profile-level">1</span></p>
+                    <p><strong>Điểm kinh nghiệm:</strong> <span id="profile-xp">0</span></p>
+                    <p><strong>Ngôn ngữ đang học:</strong> <span id="profile-language">Chưa chọn</span></p>
+                </div>
+                <button id="edit-profile">Chỉnh sửa hồ sơ</button>
+            </div>
+        </div>
+        <!-- Phần cửa hàng (modal) -->
+        <div id="shop-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" id="close-shop">&times;</span>
+                <h2>Cửa hàng DuoLearn</h2>
+                <p>Số xu hiện có: <span id="coins-amount">100</span> xu</p>
+                
+                <div class="shop-items">
+                    <div class="shop-item">
+                        <h3>Gói Premium</h3>
+                        <p>Truy cập không giới hạn tất cả khóa học</p>
+                        <p>Giá: 500 xu</p>
+                        <button class="buy-btn" data-item="premium">Mua ngay</button>
+                    </div>
+                    
+                    <div class="shop-item">
+                        <h3>Bộ sticker độc quyền</h3>
+                        <p>Bộ sưu tập sticker dễ thương</p>
+                        <p>Giá: 200 xu</p>
+                        <button class="buy-btn" data-item="stickers">Mua ngay</button>
+                    </div>
+                    
+                    <div class="shop-item">
+                        <h3>Avatar đặc biệt</h3>
+                        <p>Avatar độc quyền DuoLearn</p>
+                        <p>Giá: 150 xu</p>
+                        <button class="buy-btn" data-item="avatar">Mua ngay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-container hidden">
+            <div class="progress-bar">
+                <div class="progress" id="lesson-progress"></div>
+            </div>
+            
+            <div class="question-container" id="question-container">
+                <!-- Câu hỏi sẽ được hiển thị ở đây -->
+            </div>
+            
+            <div class="options-container" id="options-container">
+                <!-- Các lựa chọn sẽ được hiển thị ở đây -->
+            </div>
+            
+            <div class="feedback hidden" id="feedback">
+                <!-- Phản hồi sẽ được hiển thị ở đây -->
+            </div>
+            
+            <button class="next-btn hidden" id="next-btn">Tiếp theo</button>
+        </div>
+
+        <div class="language-selection hidden">
+            <h2>Chọn ngôn ngữ bạn muốn học</h2>
+            <div class="languages">
+                <div class="language-card" data-lang="en">
+                    <img src="https://flagcdn.com/w80/gb.png" alt="Anh">
+                    <span>Tiếng Anh</span>
+                </div>
+                <div class="language-card" data-lang="fr">
+                    <img src="https://flagcdn.com/w80/fr.png" alt="Pháp">
+                    <span>Tiếng Pháp</span>
+                </div>
+                <div class="language-card" data-lang="es">
+                    <img src="https://flagcdn.com/w80/es.png" alt="Tây Ban Nha">
+                    <span>Tiếng Tây Ban Nha</span>
+                </div>
+                <div class="language-card" data-lang="de">
+                    <img src="https://flagcdn.com/w80/de.png" alt="Đức">
+                    <span>Tiếng Đức</span>
+                </div>
+                <div class="language-card" data-lang="zh">
+                    <img src="https://flagcdn.com/w80/cn.png" alt="Trung Quốc">
+                    <span>Tiếng Trung</span>
+                </div>
+            </div>
+        </div>
+        <!-- Các phần khác giữ nguyên -->
+        <div class="lesson-container hidden">
+            <!-- ... (giữ nguyên phần này) ... -->
+        </div>
+
+        <div class="language-selection hidden">
+            <!-- ... (giữ nguyên phần này) ... -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2023 DuoLearn. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
