@@ -16,6 +16,99 @@
         a, a:visited, a:hover {
             color: black !important;
         }
+        /* Basic styling for sections */
+        .hidden {
+            display: none;
+        }
+
+        main {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .welcome-section, .language-selection, .shop-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .language-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 120px;
+            cursor: pointer;
+        }
+
+        .language-card img {
+            width: 60px;
+            height: 40px;
+        }
+
+        .packages {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .package-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .buy-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .buy-btn:hover {
+            background-color: #218838;
+        }
+
+        header {
+            background-color: #28a745;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
         
     </style>
 </head>
@@ -34,52 +127,6 @@
             <p>Hãy bắt đầu học ngôn ngữ ngay hôm nay.(Let start learn language today ) </p>
             <button id="start-learning">Bắt đầu học</button>
         </div>
-        <!-- Phần hồ sơ (modal) -->
-        <div id="profile-modal" class="modal hidden">
-            <div class="modal-content">
-                <span class="close-btn" id="close-profile">&times;</span>
-                <h2>Hồ sơ của bạn</h2>
-                <div id="profile-info">
-                    <p><strong>Tên:</strong> <span id="profile-name">Người dùng mới</span></p>
-                    <p><strong>Cấp độ:</strong> <span id="profile-level">1</span></p>
-                    <p><strong>Điểm kinh nghiệm:</strong> <span id="profile-xp">0</span></p>
-                    <p><strong>Ngôn ngữ đang học:</strong> <span id="profile-language">Chưa chọn</span></p>
-                </div>
-                <button id="edit-profile">Chỉnh sửa hồ sơ</button>
-            </div>
-        </div>
-        <!-- Phần cửa hàng (modal) -->
-        <div id="shop-modal" class="modal hidden">
-            <div class="modal-content">
-                <span class="close-btn" id="close-shop">&times;</span>
-                <h2>Cửa hàng DuoLearn</h2>
-                <p>Số xu hiện có: <span id="coins-amount">100</span> xu</p>
-                
-                <div class="shop-items">
-                    <div class="shop-item">
-                        <h3>Gói Premium</h3>
-                        <p>Truy cập không giới hạn tất cả khóa học</p>
-                        <p>Giá: 500 xu</p>
-                        <button class="buy-btn" data-item="premium">Mua ngay</button>
-                    </div>
-                    
-                    <div class="shop-item">
-                        <h3>Bộ sticker độc quyền</h3>
-                        <p>Bộ sưu tập sticker dễ thương</p>
-                        <p>Giá: 200 xu</p>
-                        <button class="buy-btn" data-item="stickers">Mua ngay</button>
-                    </div>
-                    
-                    <div class="shop-item">
-                        <h3>Avatar đặc biệt</h3>
-                        <p>Avatar độc quyền DuoLearn</p>
-                        <p>Giá: 150 xu</p>
-                        <button class="buy-btn" data-item="avatar">Mua ngay</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="lesson-container hidden">
             <div class="progress-bar">
                 <div class="progress" id="lesson-progress"></div>
@@ -128,8 +175,37 @@
                 </div>
                 <div class="language-card" data-lang="ja">
                     <img src="https://flagcdn.com/w80/jp.png" alt="Nhật Bản">
-                    <span>Tiếng Nhật</span>
+                    <span>Tiếng Nhật</span>    
                 </div>
+            </div>
+        </div>
+            <!-- Shop Section -->
+        <div class="shop-section hidden">
+            <h2>Cửa hàng - Các gói mua</h2>
+            <div class="packages">
+                <div class="package-card">
+                    <h3>Gói Cơ Bản</h3>
+                    <p>100.000 VNĐ/tháng</p>
+                    <p>Quảng cáo: Không</p>
+                    <p>Học ngoại tuyến: Có</p>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="package-card">
+                    <h3>Gói Nâng Cao</h3>
+                    <p>200.000 VNĐ/tháng</p>
+                    <p>Quảng cáo: Không</p>
+                    <p>Học ngoại tuyến: Có</p>
+                    <p>Khóa học đặc biệt: Có</p>
+                    <button class="buy-btn">Mua ngay</button>
+                </div>
+                <div class="package-card">
+                    <h3>Gói Gia Đình</h3>
+                    <p>500.000 VNĐ/tháng</p>
+                    <p>Quảng cáo: Không</p>
+                    <p>Học ngoại tuyến: Có</p>
+                    <p>Khóa học đặc biệt: Có</p>
+                    <p>Tài khoản: 5 người</p>
+                    <button class="buy-btn">Mua ngay</button>
                 </div>
             </div>
         </div>
