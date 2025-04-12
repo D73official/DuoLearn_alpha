@@ -16,13 +16,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('next-btn');
     const progressBar = document.getElementById('lesson-progress');
     const languageCards = document.querySelectorAll('.language-card');
-    
-    // Sự kiện bắt đầu học
-    startLearningBtn.addEventListener('click', function() {
+    const shopBtn = document.getElementById('shop-btn');
+    const shopSection = document.querySelector('.shop-section');
+
+    // Function to hide all sections
+    function hideAllSections() {
         welcomeSection.classList.add('hidden');
+        languageSelection.classList.add('hidden');
+        lessonContainer.classList.add('hidden');
+        shopSection.classList.add('hidden');
+    }
+
+    // Sự kiện bắt đầu học (using hideAllSections to ensure consistency)
+    startLearningBtn.addEventListener('click', function() {
+        hideAllSections();
         languageSelection.classList.remove('hidden');
     });
-    
+
     // Sự kiện chọn ngôn ngữ
     languageCards.forEach(card => {
         card.addEventListener('click', function() {
@@ -33,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             startLesson();
         });
     });
-    
+
     // Sự kiện nút tiếp theo
     nextBtn.addEventListener('click', function() {
         this.classList.add('hidden');
@@ -58,7 +68,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }, { once: true });
         }
     });
-    
+
+    // Sự kiện nút "Cửa hàng"
+    shopBtn.addEventListener('click', () => {
+        hideAllSections();
+        shopSection.classList.remove('hidden');
+    });
+
+    // Optional: Add interactivity to "Mua ngay" buttons
+    const buyButtons = document.querySelectorAll('.buy-btn');
+    buyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const packageName = button.parentElement.querySelector('h3').textContent;
+            alert(`Bạn đã chọn mua ${packageName}! Vui lòng tiến hành thanh toán.`);
+        });
+    });
+
     // Tải câu hỏi
     function loadQuestions(language) {
         const questionData = {
@@ -306,6 +331,110 @@ document.addEventListener('DOMContentLoaded', function() {
                     options: ["面 (Miàn)", "饭 (Fàn)", "面包 (Miànbāo)", "饺子 (Jiǎozi)"],
                     answer: "饭 (Fàn)"
                 }
+            ],
+            'ko': [
+                {
+                    question: "Dịch 'Xin chào' sang tiếng Hàn",
+                    options: ["안녕히 가세요 (Annyeonghi gaseyo)", "안녕하세요 (Annyeonghaseyo)", "감사합니다 (Gamsahamnida)", "제발 (Jebal)"],
+                    answer: "안녕하세요 (Annyeonghaseyo)"
+                },
+                {
+                    question: "Dịch 'Cảm ơn' sang tiếng Hàn",
+                    options: ["안녕하세요 (Annyeonghaseyo)", "안녕히 가세요 (Annyeonghi gaseyo)", "감사합니다 (Gamsahamnida)", "미안합니다 (Mianhamnida)"],
+                    answer: "감사합니다 (Gamsahamnida)"
+                },
+                {
+                    question: "Dịch 'Tạm biệt' sang tiếng Hàn (khi người ở lại)",
+                    options: ["안녕하세요 (Annyeonghaseyo)", "안녕히 가세요 (Annyeonghi gaseyo)", "제발 (Jebal)", "네 (Ne)"],
+                    answer: "안녕히 가세요 (Annyeonghi gaseyo)"
+                },
+                {
+                    question: "Dịch 'Xin lỗi' sang tiếng Hàn",
+                    options: ["감사합니다 (Gamsahamnida)", "제발 (Jebal)", "미안합니다 (Mianhamnida)", "안녕하세요 (Annyeonghaseyo)"],
+                    answer: "미안합니다 (Mianhamnida)"
+                },
+                {
+                    question: "Dịch 'Vui lòng' sang tiếng Hàn",
+                    options: ["제발 (Jebal)", "감사합니다 (Gamsahamnida)", "안녕하세요 (Annyeonghaseyo)", "안녕히 가세요 (Annyeonghi gaseyo)"],
+                    answer: "제발 (Jebal)"
+                },
+                {
+                    question: "Dịch 'Tôi' sang tiếng Hàn",
+                    options: ["너 (Neo)", "나 (Na)", "그 (Geu)", "그녀 (Geunyeo)"],
+                    answer: "나 (Na)"
+                },
+                {
+                    question: "Dịch 'Bạn' sang tiếng Hàn",
+                    options: ["나 (Na)", "너 (Neo)", "우리 (Uri)", "그들 (Geudeul)"],
+                    answer: "너 (Neo)"
+                },
+                {
+                    question: "Dịch 'Nước' sang tiếng Hàn",
+                    options: ["물 (Mul)", "불 (Bul)", "흙 (Heuk)", "바람 (Baram)"],
+                    answer: "물 (Mul)"
+                },
+                {
+                    question: "Dịch 'Cơm' sang tiếng Hàn",
+                    options: ["빵 (Ppang)", "밥 (Bap)", "국 (Guk)", "김치 (Kimchi)"],
+                    answer: "밥 (Bap)"
+                },
+                {
+                    question: "Dịch 'Kimchi' sang tiếng Hàn",
+                    options: ["된장 (Doenjang)", "김치 (Kimchi)", "고추장 (Gochujang)", "불고기 (Bulgogi)"],
+                    answer: "김치 (Kimchi)"
+                }
+            ],
+            'ja': [
+                {
+                    question: "Dịch 'Xin chào' sang tiếng Nhật",
+                    options: ["さようなら (Sayōnara)", "こんにちは (Konnichiwa)", "ありがとう (Arigatō)", "お願いします (Onegaishimasu)"],
+                    answer: "こんにちは (Konnichiwa)"
+                },
+                {
+                    question: "Dịch 'Cảm ơn' sang tiếng Nhật",
+                    options: ["こんにちは (Konnichiwa)", "さようなら (Sayōnara)", "ありがとう (Arigatō)", "すみません (Sumimasen)"],
+                    answer: "ありがとう (Arigatō)"
+                },
+                {
+                    question: "Dịch 'Tạm biệt' sang tiếng Nhật",
+                    options: ["こんにちは (Konnichiwa)", "さようなら (Sayōnara)", "お願いします (Onegaishimasu)", "はい (Hai)"],
+                    answer: "さようなら (Sayōnara)"
+                },
+                {
+                    question: "Dịch 'Xin lỗi' sang tiếng Nhật",
+                    options: ["ありがとう (Arigatō)", "お願いします (Onegaishimasu)", "すみません (Sumimasen)", "こんにちは (Konnichiwa)"],
+                    answer: "すみません (Sumimasen)"
+                },
+                {
+                    question: "Dịch 'Vui lòng' sang tiếng Nhật",
+                    options: ["お願いします (Onegaishimasu)", "ありがとう (Arigatō)", "こんにちは (Konnichiwa)", "さようなら (Sayōnara)"],
+                    answer: "お願いします (Onegaishimasu)"
+                },
+                {
+                    question: "Dịch 'Tôi' sang tiếng Nhật",
+                    options: ["あなた (Anata)", "わたし (Watashi)", "かれ (Kare)", "かのじょ (Kanojo)"],
+                    answer: "わたし (Watashi)"
+                },
+                {
+                    question: "Dịch 'Bạn' sang tiếng Nhật",
+                    options: ["わたし (Watashi)", "あなた (Anata)", "わたしたち (Watashitachi)", "かれら (Karera)"],
+                    answer: "あなた (Anata)"
+                },
+                {
+                    question: "Dịch 'Nước' sang tiếng Nhật",
+                    options: ["水 (Mizu)", "火 (Hi)", "土 (Tsuchi)", "風 (Kaze)"],
+                    answer: "水 (Mizu)"
+                },
+                {
+                    question: "Dịch 'Cơm' sang tiếng Nhật",
+                    options: ["パン (Pan)", "ご飯 (Gohan)", "麺 (Men)", "寿司 (Sushi)"],
+                    answer: "ご飯 (Gohan)"
+                },
+                {
+                    question: "Dịch 'Sushi' sang tiếng Nhật",
+                    options: ["天ぷら (Tempura)", "寿司 (Sushi)", "ラーメン (Rāmen)", "刺身 (Sashimi)"],
+                    answer: "寿司 (Sushi)"
+                }
             ]
         };
         
@@ -317,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 answer: "Lựa chọn 1"
             }];
         }
-    }
+    } 
     
     // Bắt đầu bài học
     function startLesson() {
